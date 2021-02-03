@@ -15,18 +15,23 @@
                 <td>E-mail</td>
                 <td>Ações</td>
             </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>
-                    <a href="">Ver Usuários</a>
-                    <form action="" method="post">
-                        <input type="hidden" name="user" value="">
-                        <input type="submit" name="Remover">
-                    </form>
-                </td>
-            </tr>
+            @foreach($users as $user)
+                <tr>
+                    <td>{{$user->id}}</td>
+                    <td>{{$user->name}}</td>
+                    <td>{{$user->email}}</td>
+                    <td>
+                        <a href="">Ver Usuários</a>
+                        <form action="{{ route('user.destroy', ['user'=>$user->id]) }}" method="post">
+                            @csrf
+                            <!-- form spofin-->
+                            @method('DELETE')
+                            <input type="hidden" name="user" value="{{$user->id}}">
+                            <input type="submit" value="Remover">
+                        </form>
+                    </td>
+                </tr>
+            @endforeach    
         </table>
     </body>
 </html>
