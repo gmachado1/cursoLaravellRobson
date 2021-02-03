@@ -10,28 +10,35 @@
     <body>
         <table>
             <tr>
-                <td>#ID</td>
-                <td>Nome:</td>
-                <td>E-mail</td>
-                <td>Ações</td>
+                <th>#ID</th>
+                <th>Nome:</th>
+                <th>E-mail</th>
+                <th>Ações</th>
             </tr>
             @foreach($users as $user)
+            <tr>
+                <td>{{ $user->id }}</td>
+                <td>{{ $user->name }}</td>
+                <td>{{ $user->email }}</td>
+                <td>
+                    <a href="{{ route('user.show', ['user'=>$user->id])}}">Ver Usuários</a>
+                    <a href="{{ route('user.edit', ['user'=>$user->id])}}">Editar Usuários</a>
+                    <form action="{{ route('user.destroy', ['user'=>$user->id]) }}" method="post">
+                        @csrf
+                        @method('DELETE')
+                        <input type="submit" name="Remover">
+                    </form>
+                </td>
+            </tr>
+            @endForEach
+            <tfoot>
                 <tr>
-                    <td>{{$user->id}}</td>
-                    <td>{{$user->name}}</td>
-                    <td>{{$user->email}}</td>
-                    <td>
-                        <a href="">Ver Usuários</a>
-                        <form action="{{ route('user.destroy', ['user'=>$user->id]) }}" method="post">
-                            @csrf
-                            <!-- form spofin-->
-                            @method('DELETE')
-                            <input type="hidden" name="user" value="{{$user->id}}">
-                            <input type="submit" value="Remover">
-                        </form>
-                    </td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td><a href="{{ route('user.create')}}">Novo Usuário</a></td>
                 </tr>
-            @endforeach    
+              </tfoot>
         </table>
     </body>
 </html>
