@@ -11,5 +11,9 @@
 |
 */
 
-Route::get('/', 'PostController@showForm');
-Route::post('/debug', 'PostController@debug')->name('debug');
+
+
+Route::get('/usuario/{id}', "UserController@show");
+Route::get('/endereco/{address}', "AddressController@show");
+Route::get('/artigos/{post}', "PostController@show");
+Route::get('/categoria/{category}', "CategoryController@show");
