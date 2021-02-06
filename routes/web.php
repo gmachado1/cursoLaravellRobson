@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 Route::get('/usuario/{id}', "UserController@show");
 Route::get('/endereco/{address}', "AddressController@show");
