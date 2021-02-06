@@ -15,4 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('usuarios', 'Form\\TestController')->names('user')->parameters(['usuarios'=>'user']);
+Route::get('/usuario/{id}', "UserController@show");
+Route::get('/endereco/{address}', "AddressController@show");
+Route::get('/artigos/{post}', "PostController@show");
+Route::get('/categoria/{category}', "CategoryController@show");
