@@ -12,7 +12,13 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('site.home');
+})->name('site.home');
 
-Route::resource('usuarios', 'Form\\TestController')->names('user')->parameters(['usuarios'=>'user']);
+Route::get('/cursos', function () {
+    return view('site.courses');
+})->name('site.courses');
+
+Route::get('/contato', function () {
+    return view('site.contact');
+})->name('site.contact');
