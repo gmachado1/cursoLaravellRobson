@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
+use App\Address;
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+class AddressController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,50 +41,43 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Address  $address
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Address $address)
     {
-        $user = User::where('id', $id)->first();
-        if($user){
-            echo "<h1>Dados do Usuário</h1>";
-            echo "<p>Nome: {$user->name}  E-mail: {$user->email}. </p>";
-        }
-        $address = $user->address()->first();
-        // dd($user);
         if($address){
-            echo "<h2>Endereço do Usuário</h2>";
+            echo "<h1>Endereço do Usuário</h1>";
             echo "<p>Endereço completo: {$address->street}, {$address->number} {$address->city}/{$address->state}. </p>";
         }
+        
+        $user = $address->user()->first();
 
-        $posts = $user->posts()->get();
-        if($posts){
-            echo "<h3>Posts do Usuário</h3>";
-            foreach($posts as $post){
-                echo "<p>#{$post->id}: title:{$post->title}, subtitle:{$post->subtitle} slug:{$post->slug}/content:{$post->content}. </p>";
-            }
+        if($user){
+            echo "<h2>Dados do Usuário</h2>";
+            echo "<p>Nome: {$user->name}  E-mail: {$user->email}. </p>";
         }
     }
+
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Address  $address
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Address $address)
     {
-        
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Address  $address
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Address $address)
     {
         //
     }
@@ -92,10 +85,10 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Address  $address
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Address $address)
     {
         //
     }
