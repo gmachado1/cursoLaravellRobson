@@ -22,3 +22,4 @@ Route::get('/cursos', function () {
 Route::get('/contato', function () {
     return view('site.contact');
 })->name('site.contact');
+
